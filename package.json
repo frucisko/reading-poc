@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@just-boris/preact-scripts": "1.0.14",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "preact": "^8.2.5",
+    "preact-compat": "^3.17.0"
   },
   "scripts": {
     "start": "react-scripts start",
