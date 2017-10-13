@@ -4,11 +4,8 @@ import {connect} from 'preact-redux';
 import {bindActionCreators} from 'redux';
 import Word from '../components/Word';
 import * as actions from '../actions/app';
-import { soundManager } from 'soundmanager2';
 
-export const App = (word) =>{
-    soundManager.setup({ ignoreMobileRestrictions: true });
-
+export const App = (word) => {
     return (
         <Word
             word={word.currentWord}

@@ -1,42 +1,54 @@
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "[React]" }] */
-import { h, Component, React } from 'preact';
-import Sound from 'react-sound';
+import React, {h, Component} from 'preact';
 import '../assets/css/Word.css';
-// import logo from '../assets/img/mama.jpg';
-// import style from './PopupA.module.scss';
 
-export const Word = ({ word, display, end }) => {
-    const imgPath = `/img/${word}.jpg`;
-    const mp3Path = `/mp3/${word}.mp3`;
+class Word extends Component {
+    constructor(props) {
+        super(props);
+        this.createjs = window.createjs;
+    }
 
-    return (
-        <div className="word">
-            { !end && display === 'text' && (
-                <p> {word} </p>
-            )}
+    componentDidUpdate() {
+        if (this.props.display && this.props.display === 'music') {
+            const { word } = this.props;
+            const mp3Path = `/mp3/${word}.mp3`;
 
-            { !end && display === 'music' && (
-                <p>
-                    {word}
-                    <Sound
-                        url={mp3Path}
-                        playStatus={Sound.status.PLAYING}
-                        // onLoading={this.handleSongLoading}
-                        // onPlaying={this.handleSongPlaying}
-                        // onFinishedPlaying={this.handleSongFinishedPlaying}
-                    />
-                </p>
-            )}
+            this.createjs.Sound.registerSound(mp3Path, word);
+            setTimeout(() => {
+                this.createjs.Sound.play(word, {})
+            }, 500);
+        }
+    }
 
-            { !end && display === 'image' && (
-                <img src={imgPath} alt={word}/>
-            )}
+    render() {
+        const {
+            end,
+            display,
+            word,
+        } = this.props;
 
-            { end && (
-                <p> Koniec! </p>
-            )}
-        </div>
-    );
+        return (
+            <div className="word">
+                {!end && display === 'text' && (
+                    <p> {word} </p>
+                )}
+
+                {!end && display === 'music' && (
+                    <p>
+                        {word}
+                    </p>
+                )}
+
+                {!end && display === 'image' && (
+                    <img src={`/img/${word}.jpg`} alt={word}/>
+                )}
+
+                {end && (
+                    <p> Koniec! </p>
+                )}
+            </div>
+        );
+    }
 };
 
 export default Word;
