@@ -1,0 +1,18 @@
+.word {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    transform: translate(-50%,-50%);
+    font-family: "Times New Roman", Times, serif;
+    font-size: 100px;
+    /*font-size: 70vh;*/
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.word img {
+    width: 100vw;
+    height: 100vh;
+}
