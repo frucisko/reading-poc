@@ -35,7 +35,7 @@ function* nextWord() {
     if (yield select(moreWords)) {
         yield put(actions.showWord());
 
-        const countdownChannel = yield call(countdown, 3);
+        const countdownChannel = yield call(countdown, 1);
         try {
             for (;;) {
                 yield take(countdownChannel);
@@ -52,7 +52,7 @@ function* nextWord() {
 function* playMp3() {
     yield put(actions.playMp3());
 
-    const countdownChannel = yield call(countdown, 3);
+    const countdownChannel = yield call(countdown, 1);
     try {
         for (;;) {
             yield take(countdownChannel);
@@ -65,7 +65,7 @@ function* playMp3() {
 function* showImage() {
     yield put(actions.showImage());
 
-    const countdownChannel = yield call(countdown, 3);
+    const countdownChannel = yield call(countdown, 1);
     try {
         for (;;) {
             yield take(countdownChannel);

@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@just-boris/preact-scripts": "1.0.14",
+    "array-shuffle": "^1.0.1",
+    "axios": "^0.16.2",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
     "preact-redux": "^2.0.3",

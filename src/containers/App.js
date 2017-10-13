@@ -1,19 +1,24 @@
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "[React]" }] */
-import {h, React} from 'preact';
+import React, {h, Component} from 'preact';
 import {connect} from 'preact-redux';
 import {bindActionCreators} from 'redux';
+import * as actions from "../actions/app";
 import Word from '../components/Word';
-import * as actions from '../actions/app';
 
-export const App = (word) => {
-    return (
-        <Word
-            word={word.currentWord}
-            display={word.display}
-            end={word.end}
-        />
-    );
-};
+class App extends Component {
+    render() {
+        const { currentWord, display, end, startApp } = this.props;
+
+        return (
+            <Word
+                word={currentWord}
+                display={display}
+                end={end}
+                again={startApp}
+            />
+        );
+    }
+}
 
 const mapStateToProps = state => state.word;
 const mapDispatchToProps = dispatch => bindActionCreators({

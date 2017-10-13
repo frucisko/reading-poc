@@ -11,7 +11,7 @@ class Word extends Component {
     componentDidUpdate() {
         if (this.props.display && this.props.display === 'music') {
             const { word } = this.props;
-            const mp3Path = `/mp3/${word}.mp3`;
+            const mp3Path = `/data/${word}.mp3`;
 
             this.createjs.Sound.registerSound(mp3Path, word);
             setTimeout(() => {
@@ -25,27 +25,33 @@ class Word extends Component {
             end,
             display,
             word,
+            again,
         } = this.props;
 
         return (
-            <div className="word">
-                {!end && display === 'text' && (
-                    <p> {word} </p>
-                )}
+            <div>
+                <div className='word'>
+                    {!end && display === 'text' && (
+                        <p> {word} </p>
+                    )}
 
-                {!end && display === 'music' && (
-                    <p>
-                        {word}
-                    </p>
-                )}
+                    {!end && display === 'music' && (
+                        <p>
+                            {word}
+                        </p>
+                    )}
 
-                {!end && display === 'image' && (
-                    <img src={`/img/${word}.jpg`} alt={word}/>
-                )}
+                    {!end && display === 'image' && (
+                        <img src={`/data/${word}.jpg`} alt={word}/>
+                    )}
 
-                {end && (
-                    <p> Koniec! </p>
-                )}
+                    {end && (
+                        <img src='/again.png'
+                             alt={word}
+                             onClick={again}
+                             className='again' />
+                    )}
+                </div>
             </div>
         );
     }

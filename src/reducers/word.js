@@ -1,4 +1,5 @@
 import * as actions from '../actions/app';
+import arrayShuffle from 'array-shuffle';
 
 const initialState = {
     words: [],
@@ -13,7 +14,7 @@ export default (state = initialState, action) => {
         case actions.WORDS_LOADED:
             return {
                 ...state,
-                words: action.payload.words,
+                words: arrayShuffle(action.payload.words),
             };
 
         case actions.SHOW_WORD:

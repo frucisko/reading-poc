@@ -4,6 +4,27 @@ export const startApp = () => ({
     payload: { },
 });
 
+const asyncActionType = type => ({
+    INIT: `${type}_INIT`,
+    SUCCESS: `${type}_SUCCESS`,
+    ERROR: `${type}_ERROR`,
+});
+export const FETCH_WORDS = asyncActionType('FETCH_WORDS');
+
+export const fetchWords = () => ({
+    init: () => ({
+        type: FETCH_WORDS.INIT,
+    }),
+    success: payload => ({
+        type: FETCH_WORDS.SUCCESS,
+        payload,
+    }),
+    error: payload => ({
+        type: FETCH_WORDS.INIT,
+        payload,
+    }),
+});
+
 export const WORDS_LOADED = 'WORDS_LOADED';
 export const wordsLoaded = (words) => ({
     type: WORDS_LOADED,
